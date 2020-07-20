@@ -37,9 +37,10 @@ public class Emailcontroller {
 		try {
 		emailservice.sendnotification(user);
 		}
-		catch(MailException e) {
+		catch(Exception e) {
 			//catch error
 			logger.info("Error sending message:" +e.getMessage());
+			return "Error sending mail message =>"+e.getMessage();
 		}
 		return "thanks for regisrating with us";
 	}
