@@ -54,21 +54,17 @@ public class Emailservice {
 	public void sendnotification(User user)throws MailException, MessagingException, IOException {
 		Message mail=new MimeMessage(this.initializeSession());
 		mail.setFrom(new InternetAddress("arun.thril@gmail.com", false));
-		mail.setRecipients(RecipientType.TO, InternetAddress.parse(user.getEmail()));
+		
+		mail.setRecipients(RecipientType.TO, InternetAddress.parse(String.join(",",user.getEmail())));
 		mail.setSubject("Mail with attachment from Spring");
+
 		
-		/*
-		 * SimpleMailMessage 
-		mail.setTo(user.getEmail());
-		mail.setFrom("arun.thril@gmail.com");
-		mail.setSubject("test");
-		mail.setText("hi da bro");
-		javamailsender.send(mail);
-		*/
-		
+		MimeBodyPart messagebodypart=new MimeBodyPart();
+		messagebodypart.setContent("hi how are you man,hope you are busy"
+				, "text/html");
 		
 		Multipart multipart=new MimeMultipart();
-		
+		multipart.addBodyPart(messagebodypart);
 		MimeBodyPart attachpart=new MimeBodyPart();
 		attachpart.attachFile("E:\\photos\\download.jfif");
 		multipart.addBodyPart(attachpart);

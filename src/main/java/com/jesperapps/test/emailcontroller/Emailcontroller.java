@@ -26,12 +26,14 @@ public class Emailcontroller {
 	@RequestMapping("/signup-success")
 	public String signupsuccess() {
 	
+		//list of cc
+		String[] ccList = {"arunkumar88967@gmail.com","samson.donbosco@gmail.com"};
 		
 		//create a user
 		User user=new User();
 		user.setFirstName("arun");
 		user.setLastName("kumar");
-		user.setEmail("arunkumar88967@gmail.com");
+		user.setEmail(ccList);
 		
 		//send a notification
 		try {
